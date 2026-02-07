@@ -1,0 +1,122 @@
+@import "tailwindcss";
+
+@layer base {
+  :root {
+    /* --- TEMA ÚNICO: THE BATMAN (DARK) --- */
+    /* Trouxe todas as configurações do antigo .dark para cá */
+    
+    --bg-page: #050505;        /* Preto Absoluto */
+    
+    --bg-card: rgba(20, 20, 20, 0.85); /* Card Escuro Translúcido */
+    --bg-card-hover: rgba(40, 40, 40, 0.9);
+    
+    --text-main: #ffffff;      /* Texto Branco */
+    --text-muted: #a3a3a3;     /* Cinza Claro */
+    
+    --primary: #fbbf24;        /* Amarelo Ouro */
+    --border: #333333;         /* Borda Sutil */
+    
+    --glow: 0 0 15px rgba(251, 191, 36, 0.2); /* Brilho Amarelo */
+    
+    /* Imagem sempre aparece */
+    --bg-image-opacity: 0.3; 
+  }
+
+  /* Removi o bloco .dark pois agora tudo é dark por padrão */
+
+  body {
+    background-color: var(--bg-page);
+    color: var(--text-main);
+    font-family: 'Inter', sans-serif;
+    /* Sem transição de cor de fundo pois não muda mais */
+    transition: color 0.3s ease;
+  }
+}
+
+@layer components {
+  /* --- FUNDO FIXO --- */
+  .bat-background-layer {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background-color: #000000; 
+    background-image: url('/banner-batman.jpg'); 
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    
+    opacity: var(--bg-image-opacity);
+    pointer-events: none;
+  }
+
+  /* --- BANNER --- */
+  .bat-hero-banner {
+    @apply relative overflow-hidden rounded-[2rem] p-10 shadow-2xl border flex items-center h-[280px] mb-12;
+    background-color: #000000;
+    border-color: #333333; 
+    background-image: url('/banner-batman.jpg');
+    background-size: cover;
+    background-position: center;
+    color: white; 
+  }
+  
+  .bat-hero-banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(90deg, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 60%, transparent 100%);
+    z-index: 1;
+  }
+
+  /* --- CARDS --- */
+  .gotham-card {
+    background-color: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+  }
+
+  .gotham-card:hover {
+    border-color: var(--primary);
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1); /* Ajustei sombra */
+    transform: translateY(-4px);
+    background-color: var(--bg-card-hover);
+  }
+
+  /* --- BOTÕES --- */
+  .bat-btn {
+    background-color: var(--primary);
+    color: #000000; /* Texto Preto (Padrão do Batman) */
+    font-weight: 800;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 8px;
+    border: none;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  
+  .bat-btn:hover {
+    filter: brightness(1.1);
+    transform: scale(1.02);
+  }
+
+  .bat-btn-outline {
+    background: transparent;
+    border: 2px solid var(--border);
+    color: var(--text-main);
+    font-weight: 700;
+    text-transform: uppercase;
+    padding: 10px 24px;
+    border-radius: 8px;
+    transition: all 0.2s;
+    cursor: pointer;
+  }
+
+  .bat-btn-outline:hover {
+    border-color: var(--primary);
+    color: var(--primary);
+    background-color: rgba(125, 125, 125, 0.1);
+  }
+}
